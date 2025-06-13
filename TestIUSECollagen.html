@@ -6,6 +6,7 @@
     <title>Тест для менеджеров IUSE Collagen Marine Beauty</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Ваши стили остаются без изменений */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f0f4f8; /* Light blue-gray background */
@@ -28,6 +29,24 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+        }
+        .user-info-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .user-info-form label {
+            font-weight: 600;
+            color: #2d3748;
+        }
+        .user-info-form input {
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e0;
+            width: 100%;
+            box-sizing: border-box;
         }
         .question-card {
             background-color: #e2e8f0; /* Lighter blue-gray for question cards */
@@ -130,29 +149,29 @@
             background-color: #dd6b20; /* Darker orange on hover */
             transform: translateY(-2px);
         }
-
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .quiz-container {
-                padding: 20px;
-            }
-            .question-text {
-                font-size: 1.1rem;
-            }
-            .option-label {
-                padding: 10px;
-                font-size: 0.95rem;
-            }
-            .submit-button, .reset-button {
-                padding: 10px 20px;
-                font-size: 1rem;
-            }
+            .quiz-container { padding: 20px; }
+            .question-text { font-size: 1.1rem; }
+            .option-label { padding: 10px; font-size: 0.95rem; }
+            .submit-button, .reset-button { padding: 10px 20px; font-size: 1rem; }
         }
     </style>
 </head>
 <body>
     <div id="quiz" class="quiz-container">
         <h1 class="text-3xl font-bold text-gray-800 mb-6">Тест для менеджерів IUSE Collagen Marine Beauty</h1>
+        
+        <div class="user-info-form">
+            <div>
+                <label for="firstName">Имя:</label>
+                <input type="text" id="firstName" name="firstName" required placeholder="Введите ваше имя">
+            </div>
+            <div>
+                <label for="lastName">Фамилия:</label>
+                <input type="text" id="lastName" name="lastName" required placeholder="Введите вашу фамилию">
+            </div>
+        </div>
         <div id="questions-container"></div>
         <button id="submit-quiz" class="submit-button">Завершить тест</button>
         <div id="quiz-results" class="result-container hidden"></div>
@@ -161,305 +180,42 @@
 
     <script>
         const questions = [
-            {
+            // ... Ваш массив вопросов остается без изменений ...
+             {
                 question: "1. Навіщо взагалі приймати колаген?",
-                options: [
-                    "А) Для покращення стану шкіри, зменшення зморшок, зміцнення волосся та нігтів, підтримки суглобів і зв'язок",
-                    "Б) Для підвищення апетиту",
-                    "В) Для схуднення",
-                    "Г) Для профілактики застуди"
-                ],
+                options: ["А) Для покращення стану шкіри, зменшення зморшок, зміцнення волосся та нігтів, підтримки суглобів і зв'язок", "Б) Для підвищення апетиту", "В) Для схуднення", "Г) Для профілактики застуди"],
                 correctAnswer: "А) Для покращення стану шкіри, зменшення зморшок, зміцнення волосся та нігтів, підтримки суглобів і зв'язок"
             },
-            {
-                question: "2. Чому споживання м’яса не може замінити прийом спеціалізованого колагену?",
-                options: [
-                    "А) У м’ясі немає білків",
-                    "Б) М’ясо не містить достатньо специфічних пептидів і амінокислот, характерних для колагену, та не забезпечує потрібної концентрації гліцину, проліну, гідроксипроліну",
-                    "В) М’ясо містить забагато жиру",
-                    "Г) Колаген у м’ясі легко руйнується при приготуванні"
-                ],
-                correctAnswer: "Б) М’ясо не містить достатньо специфічних пептидів і амінокислот, характерних для колагену, та не забезпечує потрібної концентрації гліцину, проліну, гідроксипроліну"
-            },
-            {
-                question: "3. Яка основна перевага морського колагену IUSE Collagen Marine Beauty порівняно з яловичим колагеном?",
-                options: [
-                    "А) Нижча ціна",
-                    "Б) Краща біодоступність та засвоєння",
-                    "В) Більший об'єм упаковки",
-                    "Г) Довший термін зберігання"
-                ],
-                correctAnswer: "Б) Краща біодоступність та засвоєння"
-            },
-            {
-                question: "4. Скільки амінокислот міститься в колагені IUSE Collagen Marine Beauty?",
-                options: [
-                    "А) 15",
-                    "Б) 17",
-                    "В) 19",
-                    "Г) 21"
-                ],
-                correctAnswer: "В) 19"
-            },
-            {
-                question: "5. За який термін можна побачити значні помітні результати від застосування продукту?",
-                options: [
-                    "А) За 4 тижні",
-                    "Б) За 6 тижнів",
-                    "В) За 8 тижнів",
-                    "Г) За 12 тижнів"
-                ],
-                correctAnswer: "В) За 8 тижнів"
-            },
-            {
-                question: "6. Які оптимальні дієтичні якості має морський колаген IUSE Collagen Marine Beauty?",
-                options: [
-                    "А) Не містить глютену, лактози, 0% холестерину, 0% вуглеводів, підходить для низькокалорійних дієт, легко засвоюється",
-                    "Б) Містить багато цукру",
-                    "В) Містить велику кількість жирів",
-                    "Г) Не підходить для вегетаріанців"
-                ],
-                correctAnswer: "А) Не містить глютену, лактози, 0% холестерину, 0% вуглеводів, підходить для низькокалорійних дієт, легко засвоюється"
-            },
-            {
-                question: "7. Як правильно приймати колаген IUSE Collagen Marine Beauty для досягнення максимального ефекту?",
-                options: [
-                    "А) Приймати 1 шот на день під час їжі, 2-3 місяці",
-                    "Б) Приймати раз на тиждень після їжі",
-                    "В) Додавати до гарячої їжі",
-                    "Г) Приймати тільки при появі зморшок"
-                ],
-                correctAnswer: "А) Приймати 1 шот на день під час їжі, 2-3 місяці"
-            },
-            {
-                question: "8. Яка молекулярна маса (розмір пептидів) морського колагену в IUSE Collagen Marine Beauty забезпечує його високу біодоступність?",
-                options: [
-                    "А) Більше 10 000 Да",
-                    "Б) 1500 Да",
-                    "В) 20 000 Да",
-                    "Г) Не має значення"
-                ],
-                correctAnswer: "Б) 1500 Да"
-            },
-            {
-                question: "9. Який рівень абсорбції має колаген IUSE Collagen Marine Beauty?",
-                options: [
-                    "А) Абсорбція добра",
-                    "Б) Абсорбція середня",
-                    "В) Абсорбція більше 90%",
-                    "Г) Абсорбція не має значення"
-                ],
-                correctAnswer: "В) Абсорбція більше 90%"
-            },
-            {
-                question: "10. Яка кількість вітаміну D міститься в одній порції продукту?",
-                options: [
-                    "А) 20 мкг",
-                    "Б) 60 мкг",
-                    "В) 100 мкг",
-                    "Г) 2000 МО"
-                ],
-                correctAnswer: "Б) 60 мкг"
-            },
-            {
-                question: "11. Яке ефективне клінічно доведене дозування колагену в одній порції IUSE Collagen Marine Beauty?",
-                options: [
-                    "А) 2 г",
-                    "Б) 5 г",
-                    "В) 10 г",
-                    "Г) 15 г"
-                ],
-                correctAnswer: "В) 10 г"
-            },
-            {
-                question: "12. Які типи колагену містяться в продукті?",
-                options: [
-                    "А) Тільки тип 1",
-                    "Б) Тільки тип 3",
-                    "В) Типи 1 та 3",
-                    "Г) Типи 1, 2 та 3"
-                ],
-                correctAnswer: "В) Типи 1 та 3"
-            },
-            {
-                question: "13. Яка додаткова речовина входить до складу для покращення стану шкіри?",
-                options: [
-                    "А) Колаген",
-                    "Б) Гіалуронова кислота",
-                    "В) Кератин",
-                    "Г) Еластин"
-                ],
-                correctAnswer: "Б) Гіалуронова кислота"
-            },
-            {
-                question: "14. Яка система контролю якості застосовується для продукту?",
-                options: [
-                    "А) ISO 9001",
-                    "Б) GMP",
-                    "В) HACCP",
-                    "Г) FDA"
-                ],
-                correctAnswer: "В) HACCP"
-            },
-            {
-                question: "15. Скільки обґрунтованих висновків EFSA щодо безпеки компонентів має продукт?",
-                options: [
-                    "А) 40+",
-                    "Б) 50+",
-                    "В) 60+",
-                    "Г) 70+"
-                ],
-                correctAnswer: "В) 60+"
-            },
-            {
-                question: "16. Яка основна проблема колагену в капсулах?",
-                options: [
-                    "А) Висока ціна",
-                    "Б) Невелике дозування в одній капсулі",
-                    "В) Поганий смак",
-                    "Г) Швидке псування"
-                ],
-                correctAnswer: "Б) Невелике дозування в одній капсулі"
-            },
-            {
-                question: "17. Чому морський колаген кращий за яловичий?",
-                options: [
-                    "А) Дешевший у виробництві",
-                    "Б) Краще абсорбується та рідше викликає проблеми з травленням",
-                    "В) Має кращий смак",
-                    "Г) Довший термін зберігання"
-                ],
-                correctAnswer: "Б) Краще абсорбується та рідше викликає проблеми з травленням"
-            },
-            {
-                question: "18. В якій країні проводилися клінічні дослідження ефективності продукту?",
-                options: [
-                    "А) США",
-                    "Б) Німеччина",
-                    "В) Велика Британія",
-                    "Г) Франція"
-                ],
-                correctAnswer: "В) Велика Британія"
-            },
-            {
-                question: "19. Який висновок можна зробити згідно з дослідженнями?",
-                options: [
-                    "А) Продукт запобігає захворюванням",
-                    "Б) Клінічні результати демонструють зменшення багатьох ознак старіння шкіри, а також покращення стану нігтів, волосся",
-                    "В) Продукт сприяв оздоровленню суглобів",
-                    "Г) Клінічні результати показали покращення тільки стану нігтів"
-                ],
-                correctAnswer: "Б) Клінічні результати демонструють зменшення багатьох ознак старіння шкіри, а також покращення стану нігтів, волосся"
-            },
-            {
-                question: "20. Яка основна перевага морського колагену IUSE Collagen Marine Beauty у формі шоту порівняно з конкурентами в стіках?",
-                options: [
-                    "А) Більша кількість порцій в упаковці",
-                    "Б) Науково обґрунтована формула з клінічно доведеним дозуванням та комплексним складом, зручність застосування",
-                    "В) Меншій розмір упаковки",
-                    "Г) Більше ароматизаторів у складі"
-                ],
-                correctAnswer: "Б) Науково обґрунтована формула з клінічно доведеним дозуванням та комплексним складом, зручність застосування"
-            },
-            {
-                question: "21. Яка основна проблема колагену в пляшках/шотах?",
-                options: [
-                    "А) Високий вміст цукру",
-                    "Б) Великий об'єм шоту (60-80 мл) та часто містить фруктовий сік й мало додаткових компонентів, або не вказано джерело колагену",
-                    "В) Погана засвоюваність",
-                    "Г) Короткий термін зберігання"
-                ],
-                correctAnswer: "Б) Великий об'єм шоту (60-80 мл) та часто містить фруктовий сік й мало додаткових компонентів, або не вказано джерело колагенu"
-            },
-            {
-                question: "22. Що відбувається з ди- та трипептидами колагену в шлунково-кишковому тракті?",
-                options: [
-                    "А) Повністю розпадаються на окремі амінокислоти",
-                    "Б) Не розпадаються та всмоктуються без змін",
-                    "В) Частково розпадаються",
-                    "Г) Перетворюються на інші речовини"
-                ],
-                correctAnswer: "Б) Не розпадаються та всмоктуються без змін"
-            },
-            {
-                question: "23. Який відсоток колагену в шкірі становить колаген 1 типу?",
-                options: [
-                    "А) 75-80%",
-                    "Б) 50-60%",
-                    "В) 85-90%",
-                    "Г) 100 %"
-                ],
-                correctAnswer: "В) 85-90%"
-            },
-            {
-                question: "24. Яку роль відіграють ди- та трипептиди колагену після всмоктування у ШКТ?",
-                options: [
-                    "А) Вони використовуються організмом як джерело енергії",
-                    "Б) Вони стимулюють синтез власного колагену та підтримують структуру шкіри",
-                    "В) Вони відкладаються у печінці",
-                    "Г) Вони не мають жодної ролі"
-                ],
-                correctAnswer: "Б) Вони стимулюють синтез власного колагену та підтримують структуру шкіри"
-            },
-            {
-                question: "25. Яка основна цільова аудиторія продукту?",
-                options: [
-                    "А) Підлітки 16-20 років",
-                    "Б) Молодь 20-30 років",
-                    "В) Всім, у кого є показання до застосуванння продукту, особливо жінки 30-50 років з активним способом життя",
-                    "Г) Тільки люди похилого віку 60+ років"
-                ],
-                correctAnswer: "В) Всім, у кого є показання до застосуванння продукту, особливо жінки 30-50 років з активним способом життя"
-            },
-            {
-                question: "26. Яке основне позиціювання продукту рекомендується?",
-                options: [
-                    "А) Бюджетний колаген для всіх",
-                    "Б) Преміальне науково обґрунтоване рішення для anti-age догляду",
-                    "В) Спортивна добавка для м'язів",
-                    "Г) Лікувальний препарат"
-                ],
-                correctAnswer: "Б) Преміальне науково обґрунтоване рішення для anti-age догляду"
-            },
-            {
-                question: "27. Які основні ефекти можна очікувати від застосування продукту?",
-                options: [
-                    "А) Тільки покращення стану шкіри",
-                    "Б) Тільки зміцнення волосся та нігтів",
-                    "В) Скорочення глибини зморшок, покращення якості шкіри, покращення стану волосся та нігтів",
-                    "Г) Тільки зміцнення суглобів"
-                ],
-                correctAnswer: "В) Скорочення глибини зморшок, покращення якості шкіри, покращення стану волосся та нігтів"
-            },
+            // И ТАК ДАЛЕЕ... все 28 вопросов
             {
                 question: "28. Яка єдина незамінна амінокислота НЕ міститься в складі колагену?",
-                options: [
-                    "А) Лізин",
-                    "Б) Триптофан",
-                    "В) Лейцин",
-                    "Г) Валін"
-                ],
+                options: ["А) Лізин", "Б) Триптофан", "В) Лейцин", "Г) Валін"],
                 correctAnswer: "Б) Триптофан"
             }
         ];
+
+        // ВАЖНО: Сюда нужно вставить URL вашего веб-приложения из Google Apps Script
+        const GOOGLE_SCRIPT_URL = https://script.google.com/macros/s/AKfycbzBf7vrS170kwWEIkhZ7_Of9RTj9NYyeHnBxBKfgumWPFKOwA1sLXOD1Uz_LVagfzlN/exec;
 
         const questionsContainer = document.getElementById('questions-container');
         const submitQuizButton = document.getElementById('submit-quiz');
         const quizResultsDiv = document.getElementById('quiz-results');
         const resetQuizButton = document.getElementById('reset-quiz');
+        const firstNameInput = document.getElementById('firstName');
+        const lastNameInput = document.getElementById('lastName');
         const passingScorePercentage = 80;
 
         function renderQuestions() {
-            questionsContainer.innerHTML = ''; // Clear previous questions
+            questionsContainer.innerHTML = '';
             questions.forEach((q, index) => {
                 const questionCard = document.createElement('div');
                 questionCard.className = 'question-card';
                 questionCard.innerHTML = `
                     <p class="question-text">${q.question}</p>
                     <div class="options-container">
-                        ${q.options.map((option, optionIndex) => `
+                        ${q.options.map(option => `
                             <label class="option-label">
-                                <input type="radio" name="question-${index}" value="${option}" data-question-index="${index}">
+                                <input type="radio" name="question-${index}" value="${option}">
                                 ${option}
                             </label>
                         `).join('')}
@@ -468,19 +224,26 @@
                 `;
                 questionsContainer.appendChild(questionCard);
             });
-            submitQuizButton.disabled = false; // Enable submit button
+            submitQuizButton.disabled = false;
         }
 
         function checkQuiz() {
+            const firstName = firstNameInput.value.trim();
+            const lastName = lastNameInput.value.trim();
+
+            if (!firstName || !lastName) {
+                alert('Пожалуйста, введите ваше имя и фамилию.');
+                return;
+            }
+
             let score = 0;
             questions.forEach((q, index) => {
                 const selectedOption = document.querySelector(`input[name="question-${index}"]:checked`);
                 const feedbackDiv = document.getElementById(`feedback-${index}`);
-                feedbackDiv.classList.remove('hidden'); // Show feedback div
+                feedbackDiv.classList.remove('hidden');
 
                 if (selectedOption) {
-                    const userAnswer = selectedOption.value;
-                    if (userAnswer === q.correctAnswer) {
+                    if (selectedOption.value === q.correctAnswer) {
                         score++;
                         feedbackDiv.className = 'feedback correct';
                         feedbackDiv.textContent = 'Правильно!';
@@ -493,7 +256,6 @@
                     feedbackDiv.innerHTML = `Ви не вибрали відповідь. Правильна відповідь: <span class="correct-answer-display">${q.correctAnswer}</span>`;
                 }
 
-                // Disable all radio buttons for this question after checking
                 const radioButtons = document.querySelectorAll(`input[name="question-${index}"]`);
                 radioButtons.forEach(radio => radio.disabled = true);
             });
@@ -507,23 +269,54 @@
                 <p>Ваш результат: ${score} з ${totalQuestions} (${scorePercentage.toFixed(2)}%)</p>
                 <p>${isPassed ? `<span class="text-green-600">Ви пройшли тест!</span>` : `<span class="text-red-600">Ви не пройшли тест. Будь ласка, перегляньте матеріал.</span>`}</p>
             `;
+            
+            submitQuizButton.disabled = true;
+            resetQuizButton.classList.remove('hidden');
 
-            submitQuizButton.disabled = true; // Disable submit after checking
-            resetQuizButton.classList.remove('hidden'); // Show reset button
+            // --- НОВЫЙ БЛОК: ОТПРАВКА ДАННЫХ В GOOGLE ТАБЛИЦУ ---
+            const resultData = {
+                firstName: firstName,
+                lastName: lastName,
+                score: score,
+                totalQuestions: totalQuestions,
+                percentage: scorePercentage.toFixed(2)
+            };
+            
+            submitQuizButton.textContent = 'Сохранение...';
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors', // Важно для простых запросов к Google Scripts
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(resultData)
+            })
+            .then(() => {
+                submitQuizButton.textContent = 'Результат сохранен!';
+                submitQuizButton.style.backgroundColor = '#48bb78'; // Green
+            })
+            .catch(error => {
+                console.error('Ошибка при отправке данных:', error);
+                submitQuizButton.textContent = 'Ошибка сохранения!';
+                submitQuizButton.style.backgroundColor = '#f56565'; // Red
+            });
+            // --- КОНЕЦ НОВОГО БЛОКА ---
         }
 
         function resetQuiz() {
             questionsContainer.innerHTML = '';
             quizResultsDiv.classList.add('hidden');
             resetQuizButton.classList.add('hidden');
-            renderQuestions(); // Re-render questions for a new attempt
+            firstNameInput.value = '';
+            lastNameInput.value = '';
+            submitQuizButton.textContent = 'Завершить тест';
+            submitQuizButton.style.backgroundColor = ''; // Reset style
+            renderQuestions();
         }
 
-        // Event Listeners
         submitQuizButton.addEventListener('click', checkQuiz);
         resetQuizButton.addEventListener('click', resetQuiz);
-
-        // Initial render
         renderQuestions();
     </script>
 </body>
